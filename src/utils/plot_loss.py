@@ -236,7 +236,6 @@ def plot_cv_losses(iterations, loss_r_values, loss_bc_values, file_name, fig_fla
         ax1.set_ylim(bottom=0, top=max(loss_r_values) + 1000)
     # else:
     #     ax1.set_ylim(bottom=0, top=max(loss_r_values)+0.0001)
-    # Set only two y-ticks for loss_r
     y_min, y_max = ax1.get_ylim()
     ax1.set_yticks([y_min, y_max])
     ax1.set_yticklabels([f"{y_min:.1e}", f"{y_max:.1e}"])
@@ -244,7 +243,6 @@ def plot_cv_losses(iterations, loss_r_values, loss_bc_values, file_name, fig_fla
     ax1.grid(True)
     ax1.legend(prop={"size": MEDIUM_SIZE})
     ax1.tick_params(axis="both", which="major", labelsize=SMALL_SIZE)
-    # Hide x-axis labels and ticks for top plot
     ax1.set_xticklabels([])
 
     # Plot loss_bc
@@ -254,7 +252,6 @@ def plot_cv_losses(iterations, loss_r_values, loss_bc_values, file_name, fig_fla
         ax2.set_ylim(bottom=0, top=max(loss_bc_values) + 0.1)
     # else:
     #     ax2.set_ylim(bottom=0, top=max(loss_bc_values)+0.001)
-    # Set only two y-ticks for loss_bc
     y_min, y_max = ax2.get_ylim()
     ax2.set_yticks([y_min, y_max])
     ax2.set_yticklabels([f"{y_min:.1e}", f"{y_max:.1e}"])
