@@ -177,3 +177,6 @@ checkpoints/*
 log_files/*
 testing_checkpoints/*
 old/*
+
+src/trainer
+
