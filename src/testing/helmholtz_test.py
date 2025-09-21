@@ -132,7 +132,7 @@ def load_model(model_dir: str, solver_type: str, logger: Logging) -> Tuple[Any, 
 
         return model, state
     except Exception as e:
-        print(f"Error loading model from {model_dir}: {e}")
+        model.logger.print(f"Error loading model from {model_dir}: {e}")
         raise
 
 
@@ -161,9 +161,6 @@ def evaluate_model(
         return u_pred, f_pred
     except Exception as e:
         logger.print(f"Error in evaluate_model: {str(e)}")
-        raise
-    except Exception as e:
-        print(f"Error evaluating model: {e}")
         raise
 
 
@@ -209,7 +206,7 @@ def main():
         )
 
     except Exception as e:
-        print(f"Error in main execution: {e}")
+        logger.print(f"Error in main execution: {e}")
         sys.exit(1)
 
 

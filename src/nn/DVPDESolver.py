@@ -53,7 +53,6 @@ class DVPDESolver(nn.Module):
         #
         self.activation = nn.Tanh()
 
-        # Quantum parameters
         self.num_qubits = args["num_qubits"]
         self.quantum_layer = DVQuantumLayer(self.args)
 
@@ -124,7 +123,6 @@ class DVPDESolver(nn.Module):
             self.logger.print(f"Forward pass failed: {str(e)}")
             raise
 
-    # Save model state to a file
     def save_state(self):
         state = {
             "args": self.args,
@@ -148,7 +146,6 @@ class DVPDESolver(nn.Module):
 
         self.logger.print(f"Model state saved to {model_path}")
 
-    # Load model state from a file
     @classmethod
     def load_state(cls, file_path, map_location=None):
         if map_location is None:
@@ -156,7 +153,7 @@ class DVPDESolver(nn.Module):
         with open(file_path, "rb") as f:
             state = torch.load(f, map_location=map_location)
             # state = pickle.load(f)
-        print(f"Model state loaded from {file_path}")
+        # print(f"Model state loaded from {file_path}")
         return state
 
     def draw_quantum_circuit(self, x):

@@ -122,5 +122,5 @@ class ClassicalSolver2(nn.Module):
         with open(file_path, "rb") as f:
             state = torch.load(f, map_location=map_location)
             # state = pickle.load(f)
-        print(f"Model state loaded from {file_path}")
+        # print(f"Model state loaded from {file_path}")
         return state

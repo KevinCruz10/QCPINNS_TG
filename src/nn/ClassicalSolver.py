@@ -30,8 +30,7 @@ class ClassicalSolver(nn.Module):
 
         self.postprocessor = nn.Sequential(
             nn.Linear(self.classic_network[-2], self.classic_network[-2]).to(
-                self.device
-            ),  # 2* for X and P quadratures
+                self.device ), 
             nn.Tanh(),
             nn.Linear(self.classic_network[-2], self.classic_network[-1]).to(
                 self.device
@@ -81,7 +80,6 @@ class ClassicalSolver(nn.Module):
             self.logger.print(f"Forward pass failed: {str(e)}")
             raise
 
-    # Save model state to a file
     def save_state(self):
         state = {
             "args": self.args,
@@ -89,12 +87,8 @@ class ClassicalSolver(nn.Module):
             "preprocessor": self.preprocessor.state_dict(),
             # "middle_network": self.middle_network.state_dict(),
             "postprocessor": self.postprocessor.state_dict(),
-            "optimizer": (
-                self.optimizer.state_dict() if self.optimizer is not None else None
-            ),
-            "scheduler": (
-                self.scheduler.state_dict() if self.scheduler is not None else None
-            ),
+            "optimizer": ( self.optimizer.state_dict() if self.optimizer is not None else None),
+            "scheduler": ( self.scheduler.state_dict() if self.scheduler is not None else None),
             "loss_history": self.loss_history,
             "log_path": self.log_path,
         }

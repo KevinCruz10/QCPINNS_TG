@@ -42,7 +42,7 @@ def plt_model_results(logger, X_star, u_star, f_star, results, problem=None):
         fig.patch.set_facecolor("white")
 
         column_titles = [
-            "Exact solution $u(x)$",
+            "Reference solution $u(x)$",
             "PINN prediction $\\hat{u}(x)$",
             "PINN error",
             "QCPINN Prediction $\\hat{u}(x)$",
@@ -193,12 +193,12 @@ def plt_model_results(logger, X_star, u_star, f_star, results, problem=None):
         plt.style.use("default")
         fig.patch.set_facecolor("white")
         column_titles = [
-            "Exact solution $u(x)$",
+            "Reference solution $u(x)$",
             "PINN prediction $\\hat{u}(x)$",
             "PINN error",
             "QCPINN prediction $\\hat{u}(x)$",
             "QCPINN error",
-            "Exact solution $f(x)$",
+            "Reference solution $f(x)$",
             "PINN prediction $\\hat{f}(x)$",
             "PINN error",
             "QCPINN prediction $\\hat{f}(x)$",

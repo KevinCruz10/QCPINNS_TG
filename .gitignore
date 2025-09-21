@@ -178,5 +178,4 @@ log_files/*
 testing_checkpoints/*
 old/*
 
-src/Notebooks/training
-
+src/notebooks/training
