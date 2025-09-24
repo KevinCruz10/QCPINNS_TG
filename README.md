@@ -99,6 +99,20 @@ QCPINN/
 
 > See the `src/notebooks/` folder for hands-on examples and further documentation.
 
+## Results
+
+### Helmholtz Equation
+
+#### 1. QCPINN- Embedding: Amplitude, Topology: Alternate
+
+See the [file](https://github.com/afrah/QCPINN/blob/main/src/nn/CVPDESolver.py#L93) for the detailed configuration.
+
+![Loss convergence](doc/results/helmholtz_qcpinn_amplitude_alternate_loss.png "")
+
+![Contour plot](doc/results/helmholtz_qcpinn_amplitude_alternate_loss.png "")
+
+#### 2. QCPINN- Embedding: Amplitude, Topology: Alternate
+
 ## Support
 
 If you encounter issues or have questions, please [open an issue](https://github.com/afrah/QCPINN/issues).
