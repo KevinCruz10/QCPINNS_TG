@@ -39,7 +39,7 @@ args = {
     "hidden_dim": hidden_dim,
     "num_quantum_layers": num_quantum_layers,
     "classic_network": classic_network,
-    "q_ansatz": "sim_circ_19",  # options: "None" for CV and classical , for DV: "alternating_layer_tdcnot",  sim_circ_13_half, sim_circ_13 , sim_circ_14_half, sim_circ_14 , sim_circ_15 ,sim_circ_19
+    "q_ansatz": "cascade",  # options: None , alternate, layered , cascade, cross_mesh ,farhi
     "mode": mode,
     "activation": "tanh",  
     "shots": None,  # Analytical gradients enabled
