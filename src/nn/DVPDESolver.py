@@ -24,7 +24,8 @@ class DVPDESolver(nn.Module):
         self.encoding = self.args.get("encoding", "angle")
         self.draw_quantum_circuit_flag = True
         self.classic_network = self.args["classic_network"]  # [3, 50, 50, 50, 4] #
-
+        self.total_training_time = 0
+        self.total_memory_peak = 0
         if self.encoding == "amplitude":
             self.preprocessor = nn.Sequential(
                 nn.Linear(self.classic_network[0], self.classic_network[-2]).to(
@@ -113,9 +114,11 @@ class DVPDESolver(nn.Module):
             quantum_out = self.quantum_layer(preprocessed).to(
                 dtype=torch.float32, device=self.device
             )
-            # print(f"quantum_out: {quantum_out.shape}")
+            # print(f"quantum_out: {quantum_out.shape}")### ahapw is 1, batch_size*n_qubits
+            quantum_features = quantum_out.view(self.batch_size, -1)
+            # print(f"quantum_out: {quantum_features.shape}")### ahapw is 1, batch_size*n_qubits
 
-            classical_out = self.postprocessor(quantum_out)
+            classical_out = self.postprocessor(quantum_features)
             # print(f"classical_out: {classical_out.shape}")
             return classical_out
 
@@ -123,7 +126,7 @@ class DVPDESolver(nn.Module):
             self.logger.print(f"Forward pass failed: {str(e)}")
             raise
 
-    def save_state(self):
+    def save_state(self , path=None):
         state = {
             "args": self.args,
             "classic_network": self.classic_network,
@@ -139,7 +142,10 @@ class DVPDESolver(nn.Module):
             "log_path": self.log_path,
         }
 
-        model_path = os.path.join(self.log_path, "model.pth")
+        if path is None:
+            model_path = os.path.join(self.log_path, "model.pth")
+        else:    
+            model_path = path
 
         with open(model_path, "wb") as f:
             torch.save(state, f)
