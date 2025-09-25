@@ -115,7 +115,7 @@ class DVPDESolver(nn.Module):
                 dtype=torch.float32, device=self.device
             )
             # print(f"quantum_out: {quantum_out.shape}")### ahapw is 1, batch_size*n_qubits
-            quantum_features = quantum_out.view(self.batch_size, -1)
+            quantum_features = quantum_out.view( self.num_qubits , -1).T
             # print(f"quantum_out: {quantum_features.shape}")### ahapw is 1, batch_size*n_qubits
 
             classical_out = self.postprocessor(quantum_features)
