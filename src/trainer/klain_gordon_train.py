@@ -2,7 +2,7 @@ import time
 import torch
 
 from src.data.klein_gordon_dataset import generate_training_dataset
-from src.nn.pde import wave_operator
+from src.nn.pde import klein_gordon_operator
 
 
 def fetch_minibatch(sampler, N):
@@ -43,11 +43,11 @@ def train(model, nIter=10000, batch_size=128, log_NTK=False, update_lam=False):
         )[0]
 
         x1_r, x2_r = X_res_batch[:, 0:1], X_res_batch[:, 1:2]
-        [_, r_pred] = wave_operator(model, x1_r, x2_r)
+        [_, residual] = klein_gordon_operator(model, x1_r, x2_r)
 
         # Compute the loss
 
-        loss_r = model.loss_fn(r_pred, U_res_batch)
+        loss_r = model.loss_fn(residual, U_res_batch)
 
         loss_bc1 = model.loss_fn(u_bc1_pred, u_bc1_batch)
         loss_bc2 = model.loss_fn(u_bc2_pred, u_bc2_batch)
