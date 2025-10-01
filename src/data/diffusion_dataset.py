@@ -47,11 +47,11 @@ def u_y(txy):
 
 
 def u_xx(txy):
-    return (20000 * (txy[:, 1:2] - 0.5) ** 2 - 100) * u(txy)
+    return (40000 * (txy[:, 1:2] - 0.5) ** 2 - 400) * u(txy)
 
 
 def u_yy(txy):
-    return (20000 * (txy[:, 2:3] - 0.5) ** 2 - 100) * u(txy)
+    return (40000 * (txy[:, 2:3] - 0.5) ** 2 - 400) * u(txy)
 
 
 def r(txy, Diffusion=default_D, v_x=default_v_x, v_y=default_v_y):
