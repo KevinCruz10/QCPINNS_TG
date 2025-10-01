@@ -16,7 +16,6 @@ class Sampler:
         self.device = device
 
     def sample(self, N):
-        # Generate random samples within the specified range on the correct device
         rand_vals = torch.rand(N, self.dim, device=self.device)
         x = (
             self.coords[0:1, :]
@@ -61,7 +60,6 @@ def r(txy, Diffusion=default_D, v_x=default_v_x, v_y=default_v_y):
 
 
 def generate_training_dataset(device):
-    # Domain boundaries
     ics_coords = torch.tensor(
         [[0.0, 0.0, 0.0], [0.0, 1.0, 1.0]], dtype=torch.float32, device=device
     )
@@ -75,10 +73,8 @@ def generate_training_dataset(device):
         [[0.0, 0.0, 0.0], [1.0, 1.0, 1.0]], dtype=torch.float32, device=device
     )
 
-    # Create initial conditions samplers
     ics_sampler = Sampler(3, ics_coords, u, name="Initial Condition", device=device)
 
-    # Create boundary conditions samplers
     bc1 = Sampler(3, bc1_coords, u, name="Dirichlet BC1", device=device)
     bc2 = Sampler(3, bc2_coords, u, name="Dirichlet BC2", device=device)
     bcs_sampler = [bc1, bc2]
@@ -88,13 +84,3 @@ def generate_training_dataset(device):
 
     return [ics_sampler, bcs_sampler, res_sampler]
 
-
-# # Example usage
-# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-# dataset = generate_training_dataset(device)
-
-# # Sampling example
-# ics_sampler, bcs_sampler, coll_sampler, res_sampler = dataset
-# x, y = bcs_sampler[0].sample(10)
-# print(x)
-# print(y)
