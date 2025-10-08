@@ -28,18 +28,7 @@ class CVPDESolver(nn.Module):
         # Classical preprocessing
 
         try:
-            if self.args.get("class") == "CVNeuralNetwork1":
-                from src.nn.CVNeuralNetwork1 import CVNeuralNetwork1
-
-                self.logger.print("Using CVNeuralNetwork1")
-
-                self.quantum_layer = CVNeuralNetwork1(
-                    self.num_qubits,
-                    self.num_quantum_layers,
-                    self.device,
-                    cutoff_dim=args["cutoff_dim"],
-                )
-            elif self.args.get("class") == "CVNeuralNetwork2":
+            if self.args.get("class") == "CVNeuralNetwork2":
                 from src.nn.CVNeuralNetwork2 import CVNeuralNetwork2
 
                 self.logger.print("Using CVNeuralNetwork2 ")
