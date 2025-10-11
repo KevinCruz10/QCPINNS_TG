@@ -18,11 +18,9 @@ def train(model, nIter=10000, batch_size=128, log_NTK=False, update_lam=False):
         start_time = time.time()
         if model.optimizer is not None:
             model.optimizer.zero_grad()
-        # Fetch boundary mini-batches ,
         X_ics_batch, u_ics_batch = fetch_minibatch(ics_sampler, batch_size // 3)
         X_bcs_batch, u_bcs_batch = fetch_minibatch(bcs_sampler[0], batch_size // 3)
 
-        # Fetch residual mini-batch
         X_res_batch, r_res_batch = fetch_minibatch(res_sampler, batch_size)
 
         X_ics_batch.requires_grad_(True)
@@ -34,8 +32,6 @@ def train(model, nIter=10000, batch_size=128, log_NTK=False, update_lam=False):
         t_r, x_r, y_r = X_res_batch[:, 0:1], X_res_batch[:, 1:2], X_res_batch[:, 2:3]
         [_, r_pred] = diffusion_operator(model, t_r, x_r, y_r)
 
-        # Compute the loss
-
         loss_r = model.loss_fn(r_pred, r_res_batch)
 
         loss_bc1 = model.loss_fn(u_bc1_pred, u_bcs_batch)
@@ -45,7 +41,6 @@ def train(model, nIter=10000, batch_size=128, log_NTK=False, update_lam=False):
 
         elapsed = time.time() - start_time
 
-        # Print
         if it % model.args["print_every"] == 0:
 
             model.logger.print(
@@ -61,8 +56,6 @@ def train(model, nIter=10000, batch_size=128, log_NTK=False, update_lam=False):
                 )
             )
 
-            # Compute and Print adaptive weights during training
-            # Compute the adaptive constant
             model.save_state()
         return loss
 
