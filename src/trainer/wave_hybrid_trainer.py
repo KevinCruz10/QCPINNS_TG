@@ -55,8 +55,6 @@ args = {
 log_path = args["log_path"]
 logger = Logging(log_path)
 # Initialize the hybrid model
-# Example data (ensure double precision)
-# SIZE = 4
 
 
 if args["solver"] == "CV":
@@ -83,8 +81,6 @@ wave_train.train(model)
 model.save_state()
 
 model.logger.print("Training completed successfuly!")
-
-# Testing
 
 a = torch.tensor(0.7, dtype=torch.float32, device=DEVICE)
 c = torch.tensor(2.0, dtype=torch.float32, device=DEVICE)
