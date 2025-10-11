@@ -16,12 +16,10 @@ def train(model):
         time_start = time.time()
         if model.optimizer is not None:
             model.optimizer.zero_grad()
-        # Fetch boundary mini-batches
         X_bc1_batch, u_bc1_batch = fetch_minibatch(bcs_sampler[0], model.batch_size)
         X_bc2_batch, u_bc2_batch = fetch_minibatch(bcs_sampler[1], model.batch_size)
         X_bc3_batch, u_bc3_batch = fetch_minibatch(bcs_sampler[2], model.batch_size)
         X_bc4_batch, u_bc4_batch = fetch_minibatch(bcs_sampler[3], model.batch_size)
-        # Fetch residual mini-batch
         X_res_batch, f_res_batch = fetch_minibatch(res_sampler, model.batch_size)
         u_bc1_pred = model.forward(X_bc1_batch)
         u_bc2_pred = model.forward(X_bc2_batch)
