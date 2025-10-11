@@ -54,9 +54,6 @@ args = {
 
 log_path = args["log_path"]
 logger = Logging(log_path)
-# Initialize the hybrid model
-# Example data (ensure double precision)
-# SIZE = 4
 
 
 if args["solver"] == "CV":
@@ -96,8 +93,6 @@ plt.savefig(file_path, bbox_inches="tight")
 plt.close(
     "all",
 )
-
-# Testing
 
 alpha = torch.tensor(-1.0, device=DEVICE)
 beta = torch.tensor(0.0, device=DEVICE)
