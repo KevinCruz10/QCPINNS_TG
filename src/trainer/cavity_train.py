@@ -173,8 +173,14 @@ def train(model):
 
             model.save_state()
         loss.backward(retain_graph=True)
+        if model.args["solver"] == "CV":
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=0.1)
+        else:
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1)
+        
         if model.optimizer is not None:
             model.optimizer.step()
         if model.scheduler is not None:
             model.scheduler.step(loss)  # Step the learning rate scheduler
         model.loss_history.append(loss.item())
+
