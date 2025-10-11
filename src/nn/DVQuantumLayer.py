@@ -96,8 +96,8 @@ class DVQuantumLayer(nn.Module):
         )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        # return torch.stack([self.circuit(sample) for sample in x])
-        return self.circuit(x)   # vectorized input, no Python loop
+        # return torch.stack([self.circuit(sample) for sample in x]) # this line does the same but very slow since it requires running the quantum circuit for each input instance
+        return self.circuit(x).T   # vectorized input, no Python loop.. transpose is important
 
     def _quantum_circuit(self, x):
         if self.encoding == "amplitude":
@@ -193,7 +193,7 @@ class DVQuantumLayer(nn.Module):
             qml.RX(params[param_idx], wires=qubit_id)
             param_idx += 1
 
-        # qml.Barrier(wires=range(self.num_qubits)) ### barriers slow down computation and hinders optimization
+        # qml.Barrier(wires=range(self.num_qubits)) ### barriers are used for clarity of drawing of the quantum circuit; however, they slow down computation and hinder optimization
 
         for qubit_id in range(self.num_qubits):
             qml.CNOT(wires=[qubit_id, (qubit_id + 1) % self.num_qubits])
