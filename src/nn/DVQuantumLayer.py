@@ -97,7 +97,7 @@ class DVQuantumLayer(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # return torch.stack([self.circuit(sample) for sample in x]) # this line does the same but very slow since it requires running the quantum circuit for each input instance
-        return self.circuit(x).T   # vectorized input, no Python loop.. transpose is important
+        return self.circuit(x)   # vectorized input, no Python loop.. transpose in the main function or here is important
 
     def _quantum_circuit(self, x):
         if self.encoding == "amplitude":
