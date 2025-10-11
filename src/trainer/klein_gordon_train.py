@@ -19,7 +19,6 @@ def train(model, nIter=10000, batch_size=128, log_NTK=False, update_lam=False):
 
         if model.optimizer is not None:
             model.optimizer.zero_grad()
-        # Fetch boundary mini-batches ,
         X_ics_batch, u_ics_batch = fetch_minibatch(ics_sampler, batch_size // 3)
         X_bc1_batch, u_bc1_batch = fetch_minibatch(bcs_sampler[0], batch_size // 3)
         X_bc2_batch, u_bc2_batch = fetch_minibatch(bcs_sampler[1], batch_size // 3)
@@ -34,7 +33,6 @@ def train(model, nIter=10000, batch_size=128, log_NTK=False, update_lam=False):
         u_bc2_pred = model.forward(X_bc2_batch)
         u_ics_pred = model.forward(X_ics_batch)
 
-        # Compute gradients with respect to time
         u_t = torch.autograd.grad(
             u_ics_pred,
             X_ics_batch,  # Changed from X_ics_batch[0] to t_ics
@@ -44,8 +42,6 @@ def train(model, nIter=10000, batch_size=128, log_NTK=False, update_lam=False):
 
         x1_r, x2_r = X_res_batch[:, 0:1], X_res_batch[:, 1:2]
         [_, residual] = klein_gordon_operator(model, x1_r, x2_r)
-
-        # Compute the loss
 
         loss_r = model.loss_fn(residual, U_res_batch)
 
@@ -60,7 +56,6 @@ def train(model, nIter=10000, batch_size=128, log_NTK=False, update_lam=False):
 
         elapsed = time.time() - start_time
 
-        # Print
         if it % model.args["print_every"] == 0:
 
             model.logger.print(
@@ -76,8 +71,6 @@ def train(model, nIter=10000, batch_size=128, log_NTK=False, update_lam=False):
                 )
             )
 
-            # Compute and Print adaptive weights during training
-            # Compute the adaptive constant
             model.save_state()
         return loss
 
