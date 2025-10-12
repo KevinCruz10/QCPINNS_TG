@@ -6,6 +6,24 @@ Source code of QCPINN described in the paper: [QCPINN: Quantum-Classical Physics
 
 ---
 
+## Project Structure
+
+```
+QCPINN/
+├── data/               # Cavity datasets from simulation
+├── models/             # Saved models from training
+├── qcpinn.yaml         # Conda environment file
+└── src/
+    ├── contour_plots/  # Plotting functions
+    ├── data/           # Data generator
+    ├── nn/             # Neural network modules
+    ├── notebooks/      # Jupyter notebooks (training, testing, visualization)
+    ├── trainer/        # Training scripts
+    └── utils/          # Utility functions and helpers
+```
+
+> See the `src/notebooks/` folder for hands-on examples and further documentation.
+
 ## Getting Started
 
 ### Prerequisites
@@ -23,16 +41,16 @@ conda env create -f qcpinn.yaml
 conda activate qcpinn
 ```
 
-### Training Models
+## Training Models
 
 Train models for different PDEs using the following commands:
 
 ```bash
-# Cavity
-python -m src.trainer.cavity_hybrid_trainer
-
 # Helmholtz
 python -m src.trainer.helmholtz_hybrid_trainer
+
+# Cavity
+python -m src.trainer.cavity_hybrid_trainer
 
 # Klein-Gordon
 python -m src.trainer.klein_gordon_hybrid_trainer
@@ -53,11 +71,11 @@ Jupyter notebooks for training, testing, and visualization are in `src/notebooks
 After training, generate plots and evaluate results:
 
 ```bash
-# Cavity
-python -m src.contour_plots.cavity_hybrid_plotting
-
 # Helmholtz
 python -m src.contour_plots.helmholtz_hybrid_plotting
+
+# Cavity
+python -m src.contour_plots.cavity_hybrid_plotting
 
 # Klein-Gordon
 python -m src.contour_plots.klein_gordon_hybrid_plotting
@@ -69,7 +87,7 @@ python -m src.contour_plots.wave_hybrid_plotting
 python -m src.contour_plots.diffusion_hybrid_plotting
 ```
 
-## Comparision of the amplitude and angle encodings
+## Amplitude vs. Angle Encodings
 
 ```bash
 # Cavity
@@ -81,23 +99,19 @@ python -m src.testing.helmholtz_test
 
 Output plots and data will be saved in the appropriate results directory.
 
-## Project Structure
+## Results
 
-```
-QCPINN/
-├── data/               # Cavity datasets from simulation
-├── models/             # Saved models from training
-├── qcpinn.yaml         # Conda environment file
-└── src/
-    ├── contour_plots/  # Plotting functions
-    ├── data/           # Data generator
-    ├── nn/             # Neural network modules
-    ├── notebooks/      # Jupyter notebooks (training, testing, visualization)
-    ├── trainer/        # Training scripts
-    └── utils/          # Utility functions and helpers
-```
+### Helmholtz Equation
 
-> See the `src/notebooks/` folder for hands-on examples and further documentation.
+#### 1. QCPINN- Embedding: Amplitude, Topology: Alternate
+
+See the [file](https://github.com/afrah/QCPINN/blob/main/src/nn/CVPDESolver.py#L93) for the detailed configuration.
+
+![Loss convergence](doc/results/helmholtz_qcpinn_amplitude_alternate_loss.png "")
+
+![Contour plot](doc/results/helmholtz_qcpinn_amplitude_alternate_loss.png "")
+
+#### 2. QCPINN- Embedding: Amplitude, Topology: Alternate
 
 ## Support
 
