@@ -12,7 +12,6 @@ def get_random_minibatch(dataset_length, batch_size):
 
 def compute_losses(model):
     # print("model data" , model)
-    # Access the randomly selected minibatch for each tensor
     batch_indices = get_random_minibatch(
         model.data[0]["txy_domain"].shape[0], model.batch_size
     )
