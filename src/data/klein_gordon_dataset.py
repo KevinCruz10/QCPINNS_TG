@@ -72,27 +72,24 @@ class Sampler:
 
 
 def generate_training_dataset(device="cpu"):
-    # Parameters of equations
     alpha = torch.tensor(-1.0, device=device)
     beta = torch.tensor(0.0, device=device)
     gamma = torch.tensor(1.0, device=device)
     k = 3
 
-    # Domain boundaries
+
     ics_coords = np.array([[0.0, 0.0], [0.0, 1.0]], dtype=np.float32)
     bc1_coords = np.array([[0.0, 0.0], [1.0, 0.0]], dtype=np.float32)
     bc2_coords = np.array([[0.0, 1.0], [1.0, 1.0]], dtype=np.float32)
     dom_coords = np.array([[0.0, 0.0], [1.0, 1.0]], dtype=np.float32)
 
-    # Create initial conditions samplers
+   
     ics_sampler = Sampler(2, ics_coords, lambda x: u(x), device=device)
 
-    # Create boundary conditions samplers
     bc1 = Sampler(2, bc1_coords, lambda x: u(x), device=device)
     bc2 = Sampler(2, bc2_coords, lambda x: u(x), device=device)
     bcs_sampler = [bc1, bc2]
-
-    # Create residual sampler
+    
     res_sampler = Sampler(
         2,
         dom_coords,
