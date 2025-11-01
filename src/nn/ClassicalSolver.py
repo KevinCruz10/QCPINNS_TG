@@ -40,7 +40,7 @@ class ClassicalSolver(nn.Module):
         self.activation = nn.Tanh()
 
         self.optimizer = torch.optim.Adam(
-            filter(lambda p: p.requires_grad, self.parameters()), lr=0.005
+            filter(lambda p: p.requires_grad, self.parameters()), lr= self.args["lr"]
         )
 
         self.scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
