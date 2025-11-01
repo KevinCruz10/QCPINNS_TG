@@ -75,7 +75,7 @@ def train(model):
     for it in range(model.epochs + 1):
         loss = objective_fn(it)
         # print(f"{loss.item()=}")
-        loss.backward(retain_graph=True)
+        loss.backward()
         if model.args["solver"] == "CV":
             torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=0.1)
         else:
