@@ -38,7 +38,7 @@ class ContourPlotter:
         Each row (u, v, p) has independent scaling for solutions and errors.
         """
 
-        x_grid = xf.flatten()  # Convert to 1D arrays first
+        x_grid = xf.flatten()
         y_grid = yf.flatten()
         X, Y = np.meshgrid(x_grid, y_grid)
 
@@ -97,11 +97,9 @@ class ContourPlotter:
             row_data = data[row_start:row_end]
             row_titles = titles[row_start:row_end]
 
-            # Split into solutions (exact + predictions) and errors
             row_solutions = []
             row_errors = []
             for d, title in zip(row_data, row_titles):
-                # Extract 2D slice for current time step
                 d_slice = d[time_step] if d.ndim == 3 else d
                 if d_slice.ndim == 1:
                     d_slice = d_slice.reshape(X.shape)
@@ -113,7 +111,6 @@ class ContourPlotter:
                     row_solutions.append(d_slice)
                     # print("inside else title: ", title)
 
-            # Calculate min/max for solutions and errors in this row
             solution_min = min(np.min(d) for d in row_solutions)
             solution_max = max(np.max(d) for d in row_solutions)
 
@@ -121,7 +118,6 @@ class ContourPlotter:
                 error_min = 0.0  # smin(np.min(d) for d in row_errors)
                 error_max = max(np.max(d) for d in row_errors)
 
-            # Create parameters for each plot in current row
             for i, (d, title) in enumerate(zip(row_data, row_titles)):
                 if "error" in title.lower():
                     cmap = ERROR_MAP
@@ -132,7 +128,6 @@ class ContourPlotter:
                     vmin, vmax = solution_min, solution_max
                     # print("solution title", title)
 
-                # Handle zero-valued data
                 if vmin == vmax == 0:
                     vmin += -1e-16
                     vmax += 1e-6
@@ -149,12 +144,10 @@ class ContourPlotter:
                     }
                 )
 
-        # Create individual plots
         for idx, (ax, Z, params, title) in enumerate(
             zip(grid, data, plot_params, titles)
         ):
             ax.set_aspect("equal", adjustable="box")
-            # Create contour plot
             pcf = ax.contourf(X, Y, Z[time_step, :, :], **params["kwargs"])
 
             cb = ax.cax.colorbar(
@@ -189,7 +182,7 @@ class ContourPlotter:
                 ax.set_yticks([])
 
         self._finalize_figure(fig, filename, img_width, img_height)
-
+        
     def _finalize_figure(
         self,
         fig: plt.Figure,
