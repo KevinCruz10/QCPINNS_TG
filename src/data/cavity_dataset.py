@@ -9,7 +9,7 @@ leftP = 0.15
 rightP = 0.15
 bottomP = 0.15
 upP = 0.15
-initialP = 0.15
+initialP = 0.6
 sensorP = 0.005
 
 
@@ -138,7 +138,7 @@ def process_file(
         & (cavity_gamma0[:, 1] != cavity_gamma0[:, 1].max())
     ]
 
-    initial = domain[domain[:, 0] == domain[:, 0].min()]
+    initial = np.concat([ cavity_gamma0[cavity_gamma0[:, 0] == cavity_gamma0[:, 0].min()], cavity_gamma1[cavity_gamma1[:, 0] == cavity_gamma1[:, 0].min()]])
 
     # total = domain.shape[0] + cavity_gamma0.shape[0] + cavity_gamma1.shape[0]
 
@@ -161,7 +161,7 @@ def process_file(
     up = training_dataset[5]
     initial = training_dataset[6]
 
-    ## sort training dataset by time to better capture cuasality?? not sure
+    ## sort training dataset by time to better capture causality?? not sure
     domain = domain[np.argsort(domain[:, 0])]
     sensors = sensors[np.argsort(sensors[:, 0])]
     left = left[np.argsort(left[:, 0])]
