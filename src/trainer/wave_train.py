@@ -23,11 +23,10 @@ def train(model, nIter=10000, batch_size=128, log_NTK=False, update_lam=False):
         X_bc1_batch, _ = fetch_minibatch(bcs_sampler[0], batch_size // 3)
         X_bc2_batch, _ = fetch_minibatch(bcs_sampler[1], batch_size // 3)
 
-        # Fetch residual mini-batch
         X_res_batch, _ = fetch_minibatch(res_sampler, batch_size)
 
         X_ics_batch.requires_grad_(True)
-        t_ics = X_ics_batch[:, 0:1]  # temporal component
+        t_ics = X_ics_batch[:, 0:1]  
         t_ics.requires_grad_(True)
         u_bc1_pred = model.forward(X_bc1_batch)
         u_bc2_pred = model.forward(X_bc2_batch)
@@ -44,8 +43,6 @@ def train(model, nIter=10000, batch_size=128, log_NTK=False, update_lam=False):
         x1_r, x2_r = X_res_batch[:, 0:1], X_res_batch[:, 1:2]
         [_, r_pred] = wave_operator(model, x1_r, x2_r)
 
-        # Compute the loss
-
         loss_r = model.loss_fn(r_pred, torch.zeros_like(r_pred))
 
         loss_bc1 = model.loss_fn(u_bc1_pred, torch.zeros_like(u_bc1_pred))
@@ -59,7 +56,6 @@ def train(model, nIter=10000, batch_size=128, log_NTK=False, update_lam=False):
 
         elapsed = time.time() - start_time
 
-        # Print
         if it % model.args["print_every"] == 0:
 
             model.logger.print(
@@ -75,15 +71,13 @@ def train(model, nIter=10000, batch_size=128, log_NTK=False, update_lam=False):
                 )
             )
 
-            # Compute and Print adaptive weights during training
-            # Compute the adaptive constant
             model.save_state()
         return loss
 
     for it in range(model.epochs + 1):
         loss = objective_fn(it)
         # print(f"{loss.item()=}")
-        loss.backward(retain_graph=True)
+        loss.backward()
         if model.args["solver"] == "CV":
             torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=0.1)
         else:
