@@ -80,16 +80,6 @@ def compute_losses(model):
         model.loss_fn(pred_bottom[:, 1], uvp_bottom[:, 1])
     )
 
-    pred_sensors = model.forward(
-        txy_sensors,
-    )
-    lsensors = (
-        model.loss_fn(pred_sensors[:, 0], uvp_sensors[:, 0])
-        + model.loss_fn(pred_sensors[:, 1], uvp_sensors[:, 1])
-        + model.loss_fn(
-            pred_sensors[:, 2], uvp_sensors[:, 2]
-        )  # adding presssure is essential
-    )
     pred_up = model.forward(
         txy_up,
     )
