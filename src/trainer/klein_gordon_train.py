@@ -27,7 +27,7 @@ def train(model, nIter=10000, batch_size=128, log_NTK=False, update_lam=False):
         X_res_batch, U_res_batch = fetch_minibatch(res_sampler, batch_size)
 
         X_ics_batch.requires_grad_(True)
-        t_ics = X_ics_batch[:, 0:1]  # temporal component
+        t_ics = X_ics_batch[:, 0:1]  
         t_ics.requires_grad_(True)
         u_bc1_pred = model.forward(X_bc1_batch)
         u_bc2_pred = model.forward(X_bc2_batch)
@@ -35,7 +35,7 @@ def train(model, nIter=10000, batch_size=128, log_NTK=False, update_lam=False):
 
         u_t = torch.autograd.grad(
             u_ics_pred,
-            X_ics_batch,  # Changed from X_ics_batch[0] to t_ics
+            X_ics_batch,  
             grad_outputs=torch.ones_like(u_ics_pred),
             create_graph=True,
         )[0]
@@ -77,7 +77,7 @@ def train(model, nIter=10000, batch_size=128, log_NTK=False, update_lam=False):
     for it in range(model.epochs + 1):
         loss = objective_fn(it)
         # print(f"{loss.item()=}")
-        loss.backward(retain_graph=True)
+        loss.backward()
         if model.args["solver"] == "CV":
             torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=0.1)
         else:
