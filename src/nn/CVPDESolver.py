@@ -91,7 +91,7 @@ class CVPDESolver(nn.Module):
             )
         else:
             self.optimizer = torch.optim.Adam(
-                self.parameters(), lr=self.args["epochs"], weight_decay=0.001
+                self.parameters(), lr=self.args["lr"], weight_decay=0.001
             )
 
             self.scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
