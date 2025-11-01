@@ -161,7 +161,7 @@ def train(model):
             # print(f"quantum parameters: {model.params}")
 
             model.save_state()
-        loss.backward(retain_graph=True)
+        loss.backward()
         if model.args["solver"] == "CV":
             torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=0.1)
         else:
