@@ -140,6 +140,7 @@ Output plots and data are saved in the results directory.
 - Loss convergence Cavity flow [plot](doc/results/cavity/2025-10-06_19-42-17-416929/loss_history_cavity.png)
 
 **CV-QCPINN model Results**
+- Configuration [link](src/nn/CVNeuralNetwork1.py) 
 - Loss convergence Helomholtz [plot](doc/results/CV-QCPINN/loss_plots_helmholtz.pdf)
 - Loss convergence Cavity flow [plot](doc/results/CV-QCPINN/loss_plots_cavity.pdf)
 

@@ -22,11 +22,9 @@ class CVNeuralNetwork3(nn.Module):
         self.use_cubic_phase = use_cubic_phase
         self.use_cross_kerr = use_cross_kerr
 
-        # Improved initialization with different scales
-        active_sd = 0.0001  # For active gates (squeezing, displacement)
-        passive_sd = 0.1  # For passive gates (beam splitters, phases)
+        active_sd = 0.0001
+        passive_sd = 0.1
 
-        # Interferometer parameters
         self.num_interferometer_params = int(
             self.num_qumodes * (self.num_qumodes - 1)
         ) + max(1, self.num_qumodes - 1)
@@ -40,7 +38,6 @@ class CVNeuralNetwork3(nn.Module):
             * passive_sd
         )
 
-        # Enhanced non-linear operations
         self.squeezing_r = nn.Parameter(
             torch.randn(num_layers, num_qumodes, device=self.device) * active_sd
         )
@@ -57,7 +54,6 @@ class CVNeuralNetwork3(nn.Module):
             torch.randn(num_layers, num_qumodes, device=self.device) * active_sd
         )
 
-        # New parameters for additional operations
         if use_cubic_phase:
             self.cubic_phase = nn.Parameter(
                 torch.randn(num_layers, num_qumodes, device=self.device) * active_sd
@@ -77,12 +73,9 @@ class CVNeuralNetwork3(nn.Module):
                 torch.zeros(num_qumodes, device=self.device)
             )
 
-        # Create quantum device
         self.dev = qml.device(
             "strawberryfields.fock", wires=num_qumodes, cutoff_dim=cutoff_dim
         )
-
-        # Create quantum node
         self.circuit = qml.QNode(self._quantum_circuit, self.dev, interface="torch")
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
@@ -105,7 +98,6 @@ class CVNeuralNetwork3(nn.Module):
             for i, input_val in enumerate(inputs):
                 qml.Displacement(input_val, 0.0, wires=i)
 
-        # Iterative quantum layers
         for layer_idx in range(self.num_layers):
             self.qnn_layer(layer_idx)
 
@@ -117,10 +109,8 @@ class CVNeuralNetwork3(nn.Module):
 
     def qnn_layer(self, layer_idx):
         """Enhanced CV quantum neural network layer"""
-        # First interferometer
         self.interferometer(self.theta_1[layer_idx])
 
-        # Non-linear operations
         for wire in range(self.num_qumodes):
             qml.Squeezing(
                 self.squeezing_r[layer_idx, wire],
@@ -128,10 +118,8 @@ class CVNeuralNetwork3(nn.Module):
                 wires=wire,
             )
 
-        # Second interferometer
         self.interferometer(self.theta_2[layer_idx])
 
-        # Enhanced non-linear operations
         for wire in range(self.num_qumodes):
             qml.Displacement(
                 self.displacement_r[layer_idx, wire],
