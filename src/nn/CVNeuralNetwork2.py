@@ -53,7 +53,6 @@ class CVNeuralNetwork2(nn.Module):
             torch.randn(num_layers, num_qumodes, device=self.device) * passive_sd,
             requires_grad=True,
         )
-        # Parameters for non-linear transformations
         self.displacement_r = nn.Parameter(
             torch.randn(num_layers, num_qumodes, device=self.device) * active_sd,
             requires_grad=True,
@@ -62,7 +61,6 @@ class CVNeuralNetwork2(nn.Module):
             torch.randn(num_layers, num_qumodes, device=self.device) * passive_sd,
             requires_grad=True,
         )
-        # Add Kerr parameters
         self.kerr_params = nn.Parameter(
             torch.randn(num_layers, num_qumodes, device=self.device) * active_sd,
             requires_grad=True,

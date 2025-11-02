@@ -118,7 +118,7 @@ Output plots and data are saved in the results directory.
 
 **Wave Equation**
 - Embedding: Angle
-- Topology: Cascade
+- Topology: Cross-mesh
 - Configuration [link](https://github.com/afrah/QCPINN/blob/main/src/nn/DVPDESolver.py#L60) 
 - Results [folder](doc/results/Wave)
 
