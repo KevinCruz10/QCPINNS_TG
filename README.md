@@ -105,14 +105,39 @@ Output plots and data are saved in the results directory.
 
 **Helmholtz Equation**
 
-- Embedding: Amplitude
-- Topology: Alternate
-- Configuration [link](https://github.com/afrah/QCPINN/blob/main/src/nn/CVPDESolver.py#L93) 
-- Loss convergence Cavity flow [plot](doc/results/CV-QCPINN/loss_plots_cavity.pdf)
-- Loss convergence Helomholtz [plot](doc/results/CV-QCPINN/loss_plots_helmholtz.pdf)
-- Other results [folder](doc/results)
+- Embedding: Angle
+- Topology: Cascade
+- Configuration [link](https://github.com/afrah/QCPINN/blob/main/src/nn/DVPDESolver.py#L60) 
+-Results [folder](doc/results/helmholtz)
+
+**Cavity flow**
+- Embedding: Angle
+- Topology: Cascade
+- Configuration [link](https://github.com/afrah/QCPINN/blob/main/src/nn/DVPDESolver.py#L60) 
+-Results [folder](doc/results/cavity)
+
+**Wave Equation**
+- Embedding: Angle
+- Topology: Cascade
+- Configuration [link](https://github.com/afrah/QCPINN/blob/main/src/nn/DVPDESolver.py#L60) 
+-Results [folder](doc/results/Wave)
+
+**Klein_Gordon Equation**
+- Embedding: Angle
+- Topology: Cascade
+- Configuration [link](https://github.com/afrah/QCPINN/blob/main/src/nn/DVPDESolver.py#L60) 
+-Results [folder](doc/results/klein-Gordon)
+
+**Convection Diffusion**
+- Embedding: Angle
+- Topology: Cascade
+- Configuration [link](https://github.com/afrah/QCPINN/blob/main/src/nn/DVPDESolver.py#L60) 
+-Results [folder](doc/results/cavity)
 
 
+**Comparisio of Different Embeddings**
+- Loss convergence Helomholtz [plot](doc/results/helmholtz/2025-10-09_10-46-51-485328/loss_history_helmholtz.png)
+- Loss convergence Cavity flow [plot](doc/results/cavity/2025-10-06_19-42-17-416929/loss_history_cavity.png)
 
 ## Support
 
