@@ -107,9 +107,11 @@ Output plots and data will be saved in the appropriate results directory.
 
 See the [file](https://github.com/afrah/QCPINN/blob/main/src/nn/CVPDESolver.py#L93) for the detailed configuration.
 
-![Loss convergence](doc/results/helmholtz_qcpinn_amplitude_alternate_loss.png "")
+![Loss convergence Cavity flow](doc/results/CV-QCPINN/loss_plots_cavity.pdf)
 
-![Contour plot](doc/results/helmholtz_qcpinn_amplitude_alternate_loss.png "")
+![Loss convergence Helomholtz](doc/results/CV-QCPINN/loss_plots_helmholtz.pdf)
+
+![Other results](doc/results)
 
 #### 2. QCPINN- Embedding: Amplitude, Topology: Alternate
 
