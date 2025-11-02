@@ -108,31 +108,31 @@ Output plots and data are saved in the results directory.
 - Embedding: Angle
 - Topology: Cascade
 - Configuration [link](https://github.com/afrah/QCPINN/blob/main/src/nn/DVPDESolver.py#L60) 
--Results [folder](doc/results/helmholtz)
+- Results [folder](doc/results/helmholtz)
 
 **Cavity flow**
 - Embedding: Angle
 - Topology: Cascade
 - Configuration [link](https://github.com/afrah/QCPINN/blob/main/src/nn/DVPDESolver.py#L60) 
--Results [folder](doc/results/cavity)
+- Results [folder](doc/results/cavity)
 
 **Wave Equation**
 - Embedding: Angle
 - Topology: Cascade
 - Configuration [link](https://github.com/afrah/QCPINN/blob/main/src/nn/DVPDESolver.py#L60) 
--Results [folder](doc/results/Wave)
+- Results [folder](doc/results/Wave)
 
 **Klein_Gordon Equation**
 - Embedding: Angle
 - Topology: Cascade
 - Configuration [link](https://github.com/afrah/QCPINN/blob/main/src/nn/DVPDESolver.py#L60) 
--Results [folder](doc/results/klein-Gordon)
+- Results [folder](doc/results/klein-Gordon)
 
 **Convection Diffusion**
 - Embedding: Angle
 - Topology: Cascade
 - Configuration [link](https://github.com/afrah/QCPINN/blob/main/src/nn/DVPDESolver.py#L60) 
--Results [folder](doc/results/cavity)
+- Results [folder](doc/results/cavity)
 
 
 **Comparisio of Different Embeddings**
