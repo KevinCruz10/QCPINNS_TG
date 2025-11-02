@@ -139,6 +139,10 @@ Output plots and data are saved in the results directory.
 - Loss convergence Helomholtz [plot](doc/results/helmholtz/2025-10-09_10-46-51-485328/loss_history_helmholtz.png)
 - Loss convergence Cavity flow [plot](doc/results/cavity/2025-10-06_19-42-17-416929/loss_history_cavity.png)
 
+**CV-QCPINN model Results**
+- Loss convergence Helomholtz [plot](doc/results/CV-QCPINN/loss_plots_helmholtz.pdf)
+- Loss convergence Cavity flow [plot](doc/results/CV-QCPINN/loss_plots_cavity.pdf)
+
 ## Support
 
 If you encounter issues or have questions, please [open an issue](https://github.com/afrah/QCPINN/issues).
