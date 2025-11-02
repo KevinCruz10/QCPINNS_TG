@@ -179,3 +179,4 @@ testing_checkpoints/*
 old/*
 
 src/notebooks/training
+models/old
