@@ -87,7 +87,9 @@ python -m src.contour_plots.wave_hybrid_plotting
 python -m src.contour_plots.diffusion_hybrid_plotting
 ```
 
-## Amplitude vs. Angle Encodings
+## Testing 
+
+**Amplitude vs. Angle Encodings**
 
 ```bash
 # Cavity
@@ -97,20 +99,20 @@ python -m src.testing.cavity_test
 python -m src.testing.helmholtz_test
 ```
 
-Output plots and data will be saved in the appropriate results directory.
+Output plots and data are saved in the results directory.
 
 ## Results
 
-### Helmholtz Equation
+**Helmholtz Equation**
 
-#### 1. QCPINN- Embedding: Amplitude, Topology: Alternate
-
+- Embedding: Amplitude
+- Topology: Alternate
 - Configuration [link](https://github.com/afrah/QCPINN/blob/main/src/nn/CVPDESolver.py#L93) 
 - Loss convergence Cavity flow [plot](doc/results/CV-QCPINN/loss_plots_cavity.pdf)
 - Loss convergence Helomholtz [plot](doc/results/CV-QCPINN/loss_plots_helmholtz.pdf)
 - Other results [folder](doc/results)
 
-#### 2. QCPINN- Embedding: Amplitude, Topology: Alternate
+
 
 ## Support
 
