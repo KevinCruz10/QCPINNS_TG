@@ -161,7 +161,7 @@ MIT [LICENSE](LICENSE)
 If you find this work useful, please consider citing:
 
 ```bibtex
-@article{10.1088/2632-2153/ae1c91,
+@article{Farea:2025:MLST,
 	author={Farea, Afrah and Khan, Saiful and ÇELEBİ, Mustafa Serdar},
 	title={QCPINN: Quantum-Classical Physics-Informed Neural Networks for Solving PDEs},
 	journal={Machine Learning: Science and Technology},
