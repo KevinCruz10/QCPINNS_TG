@@ -1,8 +1,8 @@
 # QCPINN: Quantum-Classical Physics-Informed Neural Networks
 
-[![arXiv](https://img.shields.io/badge/arXiv-2503.16678-b31b1b.svg)](https://arxiv.org/abs/2503.16678)
+[![arXiv](https://iopscience.iop.org/article/10.1088/2632-2153/ae1c91)
 
-Source code of QCPINN described in the paper: [QCPINN: Quantum-Classical Physics-Informed Neural Networks for Solving PDEs](https://arxiv.org/abs/2503.16678).
+Source code of QCPINN described in the paper: [QCPINN: Quantum-Classical Physics-Informed Neural Networks for Solving PDEs](https://iopscience.iop.org/article/10.1088/2632-2153/ae1c91).
 
 ---
 
