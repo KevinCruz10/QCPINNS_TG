@@ -1,0 +1,38 @@
+{
+  "cascade": {
+    "low_band_ratio_pred_over_exact": 0.9952222382993077,
+    "high_band_ratio_pred_over_exact": 1.0030126969843136
+  },
+  "q6": {
+    "low_band_ratio_pred_over_exact": 1.0764787080440716,
+    "high_band_ratio_pred_over_exact": 1.0032041996516403
+  },
+  "alternate": {
+    "low_band_ratio_pred_over_exact": 1.0614938331105077,
+    "high_band_ratio_pred_over_exact": 0.9786290766231156
+  },
+  "layered": {
+    "low_band_ratio_pred_over_exact": 1.946103164580301,
+    "high_band_ratio_pred_over_exact": 0.9190773651068581
+  },
+  "cross_mesh": {
+    "low_band_ratio_pred_over_exact": 1.1279532042411728,
+    "high_band_ratio_pred_over_exact": 0.9964382679883651
+  },
+  "amp_cascade": {
+    "low_band_ratio_pred_over_exact": 1.311071455397542,
+    "high_band_ratio_pred_over_exact": 0.9801357997404727
+  },
+  "wut1": {
+    "low_band_ratio_pred_over_exact": 0.9526998671226263,
+    "high_band_ratio_pred_over_exact": 1.0063214265828835
+  },
+  "wut10": {
+    "low_band_ratio_pred_over_exact": 1.2696326213959908,
+    "high_band_ratio_pred_over_exact": 0.9685469722909786
+  },
+  "pinn": {
+    "low_band_ratio_pred_over_exact": 1.009846302669063,
+    "high_band_ratio_pred_over_exact": 1.0181030429860334
+  }
+}

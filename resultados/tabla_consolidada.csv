@@ -1,0 +1,5 @@
+Metodo,Configuracion,L2_u (%),L2_f (%),Tiempo (s),Grados de libertad
+Diferencias finitas,n=401,0.0050,-,0.058,321201 incognitas
+Elementos finitos P1,n=401,0.0050,-,0.284,321201 incognitas
+PINN (Model-2),10 semillas,4.463 +- 1.558,-,90.4,2751 parametros
+QCPINN (angle-cascade),10 semillas,5.576 +- 2.720,-,5112.7,771 parametros
