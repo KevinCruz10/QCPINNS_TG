@@ -1,169 +1,182 @@
-# QCPINN: Quantum-Classical Physics-Informed Neural Networks
+# QCPINNS_TG — Réplica y diagnóstico de QCPINN sobre la ecuación de Klein-Gordon
 
-Source code of QCPINN described in the paper: [QCPINN: Quantum-Classical Physics-Informed Neural Networks for Solving PDEs](https://iopscience.iop.org/article/10.1088/2632-2153/ae1c91).
+> **Aviso de origen.** Este repositorio **contiene una copia del código de
+> [afrah/QCPINN](https://github.com/afrah/QCPINN)** (licencia MIT), redistribuida
+> aquí bajo los términos de dicha licencia, **más los scripts de réplica y
+> diagnóstico desarrollados para este trabajo de grado**. La sección
+> [Qué es propio y qué no](#qué-es-propio-y-qué-no) precisa la autoría de cada
+> archivo. El código original replicado corresponde al commit
+> `0dc467be8b16cccaa5101e63fe8cdf8d18bfdcb9`.
+
+Código y resultados agregados de la monografía *Implementación y Análisis de
+Eficiencia de Redes Neuronales Híbridas Cuántico-Clásicas Informadas por la
+Física para la Ecuación de Klein-Gordon*, Universidad Distrital Francisco José
+de Caldas, 2026.
 
 ---
 
-## Project Structure
+## Trabajo replicado
 
-```
-QCPINN/
-├── data/               # Cavity datasets from simulation
-├── models/             # Saved models from training
-├── qcpinn.yaml         # Conda environment file
-└── src/
-    ├── contour_plots/  # Plotting functions
-    ├── data/           # Data generator
-    ├── nn/             # Neural network modules
-    ├── notebooks/      # Jupyter notebooks (training, testing, visualization)
-    ├── trainer/        # Training scripts
-    └── utils/          # Utility functions and helpers
-```
+A. Farea, S. Khan y M. S. Celebi, «QCPINN: quantum-classical physics-informed
+neural networks for solving PDEs», *Machine Learning: Science and Technology*,
+vol. 6, n.º 4, 045053, 2025. DOI: [10.1088/2632-2153/ae1c91](https://doi.org/10.1088/2632-2153/ae1c91)
 
-> See the `src/notebooks/` folder for hands-on examples and further documentation.
+La réplica abarca **únicamente la ecuación de Klein-Gordon**, una de las cinco
+que el estudio original evalúa.
 
-## Getting Started
+---
 
-### Prerequisites
+## Qué es propio y qué no
 
-[Anaconda/Miniconda](https://docs.conda.io/en/latest/miniconda.html) (recommended) or any other Python environment.
+| Ruta | Autoría | Contenido |
+|---|---|---|
+| `src/`, `data/`, `doc/`, `models/`, `qcpinn.yaml` | Farea, Khan y Celebi | Código original, redistribuido bajo MIT sin modificación |
+| `LICENSE` | Farea, Khan y Celebi | Licencia MIT del código original |
+| `run_kg.py`, `run_kg_causal.py`, `analyze_kg.py`, `diagnose_kg.py`, `aggregate_causal.py`, `dedupe_causal.py`, `fd_klein_gordon.py`, `fem_klein_gordon.py`, `plot_comparison.py`, `figuras_extra.py`, `cola_experimentos.py`, `gate_check.py` | Kevin Cruz | Scripts propios de réplica, diagnóstico y análisis |
+| `resultados/`, `figuras/` | Kevin Cruz | Resultados agregados y figuras de la monografía |
+| `environment.yml`, `LICENSE-TG`, este `README.md` | Kevin Cruz | Entorno, licencia propia y documentación de la réplica |
 
-### Installation
+Los scripts propios **importan** el código original (`src.nn`, `src.data`,
+`src.utils`) sin modificarlo. Ninguna línea de `src/` fue alterada.
 
-Clone the repository and set up the environment:
+---
 
-```bash
-git clone https://github.com/afrah/QCPINN.git
-cd QCPINN
-conda env create -f qcpinn.yaml
-conda activate qcpinn
-```
+## Scripts propios
 
-## Training Models
+| Script | Función |
+|---|---|
+| `gate_check.py` | Verificación del entorno: versiones, forma del tensor del QNode, autodiff de segundo orden, conteo paramétrico |
+| `run_kg.py` | Entrenamiento instrumentado: semilla efectiva, tiempo con retropropagación, pérdida desagregada, evaluación por bloques |
+| `run_kg_causal.py` | Experimento causal de dos brazos sobre ventanas temporales complementarias |
+| `analyze_kg.py` | Agregación multi-semilla, media y desviación por grupo |
+| `diagnose_kg.py` | Mapas de error promediados, espectro del error, amplitud y fase del modo dominante |
+| `aggregate_causal.py` | Agregación del experimento causal con pruebas de Welch y Mann-Whitney |
+| `dedupe_causal.py` | Detección y eliminación de ejecuciones duplicadas |
+| `fd_klein_gordon.py` | Solucionador de diferencias finitas de segundo orden |
+| `fem_klein_gordon.py` | Solucionador de elementos finitos de Galerkin P1 |
+| `plot_comparison.py` | Figura de precisión frente a costo y grados de libertad |
+| `figuras_extra.py` | Figuras de convergencia, campos, espacio de diseño y prueba causal |
+| `cola_experimentos.py` | Cola de ejecución desatendida con fecha límite |
 
-Train models for different PDEs using the following commands:
+---
 
-```bash
-# Helmholtz
-python -m src.trainer.helmholtz_hybrid_trainer
-
-# Cavity
-python -m src.trainer.cavity_hybrid_trainer
-
-# Klein-Gordon
-python -m src.trainer.klein_gordon_hybrid_trainer
-
-# Wave
-python -m src.trainer.wave_hybrid_trainer
-
-# Diffusion
-python -m src.trainer.diffusion_hybrid_trainer
-```
-
-Jupyter notebooks for training, testing, and visualization are in `src/notebooks/`.
-
-> **Note:** I used VS Code with the Jupyter extension for working on the notebooks.
-
-## Inference
-
-After training, generate plots and evaluate results:
+## Requisitos
 
 ```bash
-# Helmholtz
-python -m src.contour_plots.helmholtz_hybrid_plotting
-
-# Cavity
-python -m src.contour_plots.cavity_hybrid_plotting
-
-# Klein-Gordon
-python -m src.contour_plots.klein_gordon_hybrid_plotting
-
-# Wave
-python -m src.contour_plots.wave_hybrid_plotting
-
-# Diffusion
-python -m src.contour_plots.diffusion_hybrid_plotting
+conda create -n qcpinn python=3.10 -y && conda activate qcpinn
+pip install torch==2.0.1+cpu --index-url https://download.pytorch.org/whl/cpu
+pip install "numpy==1.23.5" "scipy==1.10.1" "autoray==0.7.1" "setuptools==69.5.1" \
+            "pennylane==0.29.0" "pennylane-lightning==0.29.0" \
+            "matplotlib==3.7.5" "pandas==2.0.3" "h5py==3.10.0"
 ```
 
-## Testing 
+**El pin de PennyLane es obligatorio.** `DVPDESolver.forward()` ejecuta
+`quantum_out.view(num_qubits, -1).T` sobre la salida del QNode. Desde PennyLane
+0.33 esa salida es una tupla y el código falla. Python 3.10 es consecuencia de
+que numpy 1.23.5 no dispone de ruedas para versiones superiores.
 
-**Amplitude vs. Angle Encodings**
+La ejecución es en CPU de manera deliberada: con cinco qubits el vector de
+estado tiene 32 amplitudes y el costo de transferencia a memoria de vídeo domina
+sobre el cálculo. Los autores originales llegan a la misma conclusión.
+
+---
+
+## Réplica
 
 ```bash
-# Cavity
-python -m src.testing.cavity_test
+python gate_check.py                                    # debe terminar en GATE OK
 
-# Helmholtz
-python -m src.testing.helmholtz_test
+# conteos paramétricos: 771 / 796 / 2751 / 7851
+python run_kg.py --solver DV --ansatz cascade --seed 1 --epochs 0 --eval-points 20
+
+# baseline clásico, 10 semillas
+seq 1 10 | xargs -P 8 -I{} python run_kg.py --solver Classical --seed {} \
+    --epochs 20000 --threads 2 --eval-chunk 500
+
+# barrido completo desatendido
+python cola_experimentos.py --plan completo --deadline-hours 15
+
+# agregación y figuras
+python analyze_kg.py --runs "cascade=results/kg_dv_angle_cascade_seed*" \
+    "pinn=results/kg_classical_seed*" --out analysis/
+python fd_klein_gordon.py && python fem_klein_gordon.py
+python figuras_extra.py
 ```
 
-Output plots and data are saved in the results directory.
+Tiempo aproximado en un Ryzen 7 3700X de ocho núcleos: 0,26 s por iteración para
+el modelo híbrido y 0,0045 s para el clásico, de modo que una ejecución de
+20 000 épocas tarda unos 85 minutos y 1,5 minutos respectivamente.
 
-## Results
+---
 
-**Helmholtz Equation**
+## Correcciones aplicadas al código original
 
-- Embedding: Angle
-- Topology: Cascade
-- Configuration [link](https://github.com/afrah/QCPINN/blob/main/src/nn/DVPDESolver.py#L60) 
-- Results [folder](doc/results/helmholtz)
+Durante la réplica se detectaron cinco divergencias entre el código publicado y
+su descripción en el artículo. Los scripts propios las corrigen; `src/` no fue
+modificado.
 
-**Cavity flow**
-- Embedding: Angle
-- Topology: Cascade
-- Configuration [link](https://github.com/afrah/QCPINN/blob/main/src/nn/DVPDESolver.py#L60) 
-- Results [folder](doc/results/cavity)
+1. **Dispositivo mal asignado.** `DVPDESolver.__init__(self, args, logger, data=None, device=None)`
+   recibe el dispositivo en posición de `data` desde los entrenadores, por lo que
+   `self.device` queda en `None`. El entrenamiento ocurre en CPU de manera
+   silenciosa y la evaluación falla si hay GPU disponible.
+2. **Semilla no aplicada.** El parámetro existe en la configuración pero no se
+   invoca `torch.manual_seed` en ningún punto; las repeticiones no son
+   deterministas.
+3. **Tiempo mal medido.** El cronómetro se detiene antes de `loss.backward()`,
+   excluyendo la fase computacionalmente dominante.
+4. **Tamaño de lote ignorado.** `train()` fija 128 en el cuerpo del
+   procedimiento y descarta el valor de la configuración.
+5. **Ponderaciones discrepantes.** El código aplica `0.1*(L_res + L_ut) + 10*L_bc`,
+   mientras el apéndice del artículo consigna λ₁=1.0, λ₂=10.0, λ₃=1.0.
 
-**Wave Equation**
-- Embedding: Angle
-- Topology: Cross-mesh
-- Configuration [link](https://github.com/afrah/QCPINN/blob/main/src/nn/DVPDESolver.py#L60) 
-- Results [folder](doc/results/Wave)
+Adicionalmente, la evaluación original procesa 40 000 puntos en un único paso con
+grafo de segundo orden; `run_kg.py` la trocea mediante `--eval-chunk`.
 
-**Klein_Gordon Equation**
-- Embedding: Angle
-- Topology: Cascade
-- Configuration [link](https://github.com/afrah/QCPINN/blob/main/src/nn/DVPDESolver.py#L60) 
-- Results [folder](doc/results/klein-Gordon)
+---
 
-**Convection Diffusion**
-- Embedding: Angle
-- Topology: Cascade
-- Configuration [link](https://github.com/afrah/QCPINN/blob/main/src/nn/DVPDESolver.py#L60) 
-- Results [folder](doc/results/cavity)
+## Resultados principales
 
+- La réplica es exitosa: todas las métricas caen dentro de las desviaciones
+  publicadas y el ordenamiento de las cuatro topologías se reproduce.
+- El modelo híbrido alcanza precisión estadísticamente equivalente a la del
+  clásico con el 28 % de los parámetros, sin superarlo y con mayor dispersión
+  entre ejecuciones.
+- La topología del circuito produce un efecto sobre la precisión de 3,46 veces,
+  frente a 1,25 de la presencia misma del circuito.
+- Cinco mecanismos candidatos a explicar el error residual resultaron
+  descartados: fallo de anclaje, sesgo espectral, meseta estéril, acumulación
+  temporal y limitación de capacidad.
 
-**Comparisio of Different Embeddings**
-- Loss convergence Helomholtz [plot](doc/results/helmholtz/2025-10-09_10-46-51-485328/loss_history_helmholtz.png)
-- Loss convergence Cavity flow [plot](doc/results/cavity/2025-10-06_19-42-17-416929/loss_history_cavity.png)
+Los valores agregados que sustentan estas afirmaciones están en `resultados/`.
 
-**CV-QCPINN model Results**
-- Configuration [link](src/nn/CVNeuralNetwork1.py) 
-- Loss convergence Helomholtz [plot](doc/results/CV-QCPINN/loss_plots_helmholtz.pdf)
-- Loss convergence Cavity flow [plot](doc/results/CV-QCPINN/loss_plots_cavity.pdf)
+---
 
-## Support
+## Licencia
 
-If you encounter issues or have questions, please [open an issue](https://github.com/afrah/QCPINN/issues).
+El código original bajo `src/`, `data/`, `doc/`, `models/` y `qcpinn.yaml` se
+distribuye bajo la licencia MIT de sus autores, cuyo texto se conserva en
+`LICENSE`.
 
-## Contributing
+Los scripts propios enumerados arriba, junto con `resultados/`, `figuras/` y
+esta documentación, se distribuyen bajo licencia MIT con copyright propio, cuyo
+texto está en `LICENSE-TG`.
 
-Contributions are welcome! Please open an issue or submit a pull request.
+---
 
-## License
+## Cómo citar
 
-MIT [LICENSE](LICENSE)
-
-## References
-
-If you find this work useful, please consider citing:
+Si utiliza los scripts de réplica o los resultados agregados:
 
 ```bibtex
-@article{Farea:2025:MLST,
-	author={Farea, Afrah and Khan, Saiful and ÇELEBİ, Mustafa Serdar},
-	title={QCPINN: Quantum-Classical Physics-Informed Neural Networks for Solving PDEs},
-	journal={Machine Learning: Science and Technology},
-	url={http://iopscience.iop.org/article/10.1088/2632-2153/ae1c91},
-	year={2025},
+@mastersthesis{cruz2026qcpinn,
+  author = {Cruz, Kevin},
+  title  = {Implementación y Análisis de Eficiencia de Redes Neuronales
+            Híbridas Cuántico-Clásicas Informadas por la Física para la
+            Ecuación de Klein-Gordon},
+  school = {Universidad Distrital Francisco José de Caldas},
+  year   = {2026},
+  note   = {Código: https://github.com/KevinCruz10/QCPINNS_TG}
 }
 ```
+
+Si utiliza el modelo QCPINN, cite el trabajo original de Farea, Khan y Celebi.

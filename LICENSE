@@ -1,6 +1,19 @@
 MIT License
 
-Copyright (c) 2025 Afrah Farea
+Copyright (c) 2026 Kevin Cruz
+
+Esta licencia ampara exclusivamente los archivos desarrollados para el trabajo
+de grado y enumerados como propios en README.md, a saber: run_kg.py,
+run_kg_causal.py, analyze_kg.py, diagnose_kg.py, aggregate_causal.py,
+dedupe_causal.py, fd_klein_gordon.py, fem_klein_gordon.py, plot_comparison.py,
+figuras_extra.py, cola_experimentos.py, gate_check.py, environment.yml,
+README.md, y los contenidos de los directorios resultados/ y figuras/.
+
+El código original de Farea, Khan y Celebi contenido en src/, data/, doc/,
+models/ y qcpinn.yaml se distribuye bajo su propia licencia MIT, cuyo texto se
+conserva sin modificación en el archivo LICENSE.
+
+---
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
