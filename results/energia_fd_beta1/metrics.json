@@ -1,0 +1,9 @@
+{
+  "caso": "sin fuente (f=0), conservacion de energia",
+  "beta": 1.0,
+  "T": 1.0,
+  "amp": 1.0,
+  "nx_ref": 801,
+  "E0": 2.8111384168492117,
+  "drift_rel_ref": 2.284494135077459e-06
+}

@@ -1,0 +1,30 @@
+{
+  "tag": "kg_dv_angle_cross_mesh_seed5",
+  "run_dir": "./results/kg_dv_angle_cross_mesh_seed5/2026-09-02_05-00-31-749516",
+  "solver": "DV",
+  "ansatz": "cross_mesh",
+  "encoding": "angle",
+  "seed": 5,
+  "epochs": 20000,
+  "batch": 128,
+  "lr": 0.005,
+  "weights": {
+    "res": 0.1,
+    "ut": 0.1,
+    "bc": 10.0,
+    "ics": 10.0
+  },
+  "n_params": 796,
+  "total_time_s": 6104.390367507935,
+  "mean_iter_time_s": 0.3051970139625494,
+  "median_iter_time_s": 0.30148120100056985,
+  "peak_rss_mb": 550.38671875,
+  "loss_final": 0.09497660398483276,
+  "L2_u_global_pct": 4.88208644092083,
+  "L2_f_global_pct": 0.8246989920735359,
+  "L2_u_t0_pct": 1.2341241352260113,
+  "L2_u_x0_pct": 7.80792236328125,
+  "L2_u_x1_pct": 1.185277383774519,
+  "L2_u_boundary_pct": 1.326610054820776,
+  "L2_u_interior_pct": 4.941791668534279
+}

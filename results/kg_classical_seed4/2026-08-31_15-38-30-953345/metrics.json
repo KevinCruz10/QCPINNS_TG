@@ -1,0 +1,30 @@
+{
+  "tag": "kg_classical_seed4",
+  "run_dir": "./results/kg_classical_seed4/2026-08-31_15-38-30-953345",
+  "solver": "Classical",
+  "ansatz": "cascade",
+  "encoding": "angle",
+  "seed": 4,
+  "epochs": 20000,
+  "batch": 128,
+  "lr": 0.005,
+  "weights": {
+    "res": 0.1,
+    "ut": 0.1,
+    "bc": 10.0,
+    "ics": 10.0
+  },
+  "n_params": 2751,
+  "total_time_s": 96.03771162033081,
+  "mean_iter_time_s": 0.0047925561996396355,
+  "median_iter_time_s": 0.004135631000281137,
+  "peak_rss_mb": 337.609375,
+  "loss_final": 0.43487268686294556,
+  "L2_u_global_pct": 3.156372904777527,
+  "L2_f_global_pct": 2.816154807806015,
+  "L2_u_t0_pct": 1.4802023768424988,
+  "L2_u_x0_pct": 11.1650750041008,
+  "L2_u_x1_pct": 2.8404543176293373,
+  "L2_u_boundary_pct": 2.581886760890484,
+  "L2_u_interior_pct": 3.1702175736427307
+}

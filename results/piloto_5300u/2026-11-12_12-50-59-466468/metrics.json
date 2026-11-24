@@ -1,0 +1,30 @@
+{
+  "tag": "piloto_5300u",
+  "run_dir": "./results/piloto_5300u/2026-11-12_12-50-59-466468",
+  "solver": "DV",
+  "ansatz": "cascade",
+  "encoding": "angle",
+  "seed": 99,
+  "epochs": 300,
+  "batch": 128,
+  "lr": 0.005,
+  "weights": {
+    "res": 0.1,
+    "ut": 0.1,
+    "bc": 10.0,
+    "ics": 10.0
+  },
+  "n_params": 771,
+  "total_time_s": 91.99561548233032,
+  "mean_iter_time_s": 0.3056251581028393,
+  "median_iter_time_s": 0.3032429119994049,
+  "peak_rss_mb": 442.65234375,
+  "loss_final": 965.9478149414062,
+  "L2_u_global_pct": 103.46126556396484,
+  "L2_f_global_pct": 100.00238418579102,
+  "L2_u_t0_pct": 47.018060088157654,
+  "L2_u_x0_pct": 41.20989441871643,
+  "L2_u_x1_pct": 97.47366309165955,
+  "L2_u_boundary_pct": 84.8528265953064,
+  "L2_u_interior_pct": 108.63140821456909
+}

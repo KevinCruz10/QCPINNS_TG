@@ -1,0 +1,30 @@
+{
+  "tag": "kg_dv_angle_alternate_seed3",
+  "run_dir": "./results/kg_dv_angle_alternate_seed3/2026-09-01_20-58-25-446198",
+  "solver": "DV",
+  "ansatz": "alternate",
+  "encoding": "angle",
+  "seed": 3,
+  "epochs": 20000,
+  "batch": 128,
+  "lr": 0.005,
+  "weights": {
+    "res": 0.1,
+    "ut": 0.1,
+    "bc": 10.0,
+    "ics": 10.0
+  },
+  "n_params": 772,
+  "total_time_s": 4924.7113535404205,
+  "mean_iter_time_s": 0.24621642885850653,
+  "median_iter_time_s": 0.24202793199947337,
+  "peak_rss_mb": 505.59765625,
+  "loss_final": 0.380992591381073,
+  "L2_u_global_pct": 14.642605185508728,
+  "L2_f_global_pct": 1.8935950472950935,
+  "L2_u_t0_pct": 5.977778136730194,
+  "L2_u_x0_pct": 37.88333237171173,
+  "L2_u_x1_pct": 4.747214168310165,
+  "L2_u_boundary_pct": 5.896521359682083,
+  "L2_u_interior_pct": 14.804691076278687
+}

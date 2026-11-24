@@ -1,0 +1,16 @@
+{
+  "beta": 1.0,
+  "metodo": "elementos finitos Galerkin P1 (masa consistente)",
+  "nx": 401,
+  "nt": 801,
+  "dx": 0.0025,
+  "dt": 0.00125,
+  "n_incognitas": 321201,
+  "total_time_s": 0.36500371000147425,
+  "peak_rss_mb": 67.828125,
+  "L2_u_global_pct": 0.005098582080809424,
+  "L2_u_t0_pct": 3.9865179041513146e-15,
+  "L2_u_boundary_pct": 0.0025503041879499874,
+  "L2_u_interior_pct": 0.005149119916041693,
+  "err_t_ratio_last_first_decile": 1.8443216096834765
+}

@@ -1,0 +1,30 @@
+{
+  "tag": "kg_dv_angle_cascade_seed3",
+  "run_dir": "./results/kg_dv_angle_cascade_seed3/2026-08-31_16-01-19-264828",
+  "solver": "DV",
+  "ansatz": "cascade",
+  "encoding": "angle",
+  "seed": 3,
+  "epochs": 20000,
+  "batch": 128,
+  "lr": 0.005,
+  "weights": {
+    "res": 0.1,
+    "ut": 0.1,
+    "bc": 10.0,
+    "ics": 10.0
+  },
+  "n_params": 771,
+  "total_time_s": 5112.912129402161,
+  "mean_iter_time_s": 0.2556245196217651,
+  "median_iter_time_s": 0.25237781400028325,
+  "peak_rss_mb": 504.10546875,
+  "loss_final": 0.09096162021160126,
+  "L2_u_global_pct": 3.8235921412706375,
+  "L2_f_global_pct": 1.095704361796379,
+  "L2_u_t0_pct": 1.5986936166882515,
+  "L2_u_x0_pct": 13.641691207885742,
+  "L2_u_x1_pct": 1.9965358078479767,
+  "L2_u_boundary_pct": 2.1086908876895905,
+  "L2_u_interior_pct": 3.85877788066864
+}

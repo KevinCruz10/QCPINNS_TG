@@ -1,0 +1,18 @@
+{
+  "arm": "A",
+  "t0": 0.0,
+  "t1": 0.5,
+  "solver": "DV",
+  "ansatz": "cascade",
+  "seed": 2,
+  "epochs": 20000,
+  "batch": 128,
+  "match_density": false,
+  "n_params": 771,
+  "total_time_s": 4797.913126945496,
+  "mean_iter_time_s": 0.23988076681140952,
+  "peak_rss_mb": 574.55078125,
+  "loss_final": 0.15089228749275208,
+  "L2_u_window_pct": 3.542102128267288,
+  "err_t_ratio_last_first_decile": 4.7291975021362305
+}

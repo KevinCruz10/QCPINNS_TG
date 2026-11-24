@@ -1,0 +1,16 @@
+grupo           loss 50-75%  loss 75-100%  caida rel.  pend./1000ep
+pinn             9.9069e-01    5.2206e-01       0.473    -6.045e-02
+qcpinn           9.4757e-01    4.9236e-01       0.480    -6.828e-02
+
+  caida rel. ~ 0 y pendiente ~ 0  =>  Adam ya estaba plano a 20k epocas.
+  curvas medias guardadas en analysis_revision/curva_perdida_*.csv
+
+[L2 adamext] error L2_u (%) por epoca, media sobre 10 semillas:
+    epoca      0: 104.384% +-3.594
+    epoca  10000:   7.282% +-2.886
+    epoca  20000:   4.463% +-1.478
+    epoca  30000:   2.905% +-0.829
+    epoca  40000:   2.502% +-0.568
+    epoca  50000:   1.818% +-0.371
+    minimo alcanzado: 1.818% en epoca 50000
+    trayectoria media -> analysis_revision/traj_l2_adamext.csv

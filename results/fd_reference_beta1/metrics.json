@@ -1,0 +1,19 @@
+{
+  "metodo": "diferencias finitas explicitas (2do orden espacio y tiempo)",
+  "beta": 1.0,
+  "nx": 401,
+  "nt": 801,
+  "dx": 0.0025,
+  "dt": 0.00125,
+  "cfl_r": 0.5,
+  "n_incognitas": 321201,
+  "total_time_s": 0.11672070799977519,
+  "peak_rss_mb": 67.6171875,
+  "L2_u_global_pct": 0.00507250092158863,
+  "L2_u_t0_pct": 3.9865179041513146e-15,
+  "L2_u_x0_pct": 0.0,
+  "L2_u_x1_pct": 0.0031569700318239855,
+  "L2_u_boundary_pct": 0.0025503041879499874,
+  "L2_u_interior_pct": 0.005122608109868705,
+  "err_t_ratio_last_first_decile": 1.8487571799842517
+}

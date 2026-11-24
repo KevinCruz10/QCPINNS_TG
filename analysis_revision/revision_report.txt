@@ -1,0 +1,97 @@
+==================================================================
+PUNTO 1 - CONTROL DEL CUELLO DE BOTELLA
+==================================================================
+Misma forma 2->50->5->(centro)->50->1. El centro es lo unico que cambia.
+  pinn           n=10  N_p= 2751  L2_u =  4.463 +- 1.558 %
+  ctrl_none      n=10  N_p=  756  L2_u =  4.644 +- 1.693 %
+  ctrl_cos       n=10  N_p=  756  L2_u =  4.096 +- 1.292 %
+  ctrl_tanh      n=10  N_p=  756  L2_u = 22.041 +- 14.370 %
+  ctrl_linear    n=10  N_p=  786  L2_u = 78.991 +- 163.560 %
+  qcpinn         n=10  N_p=  771  L2_u =  5.576 +- 2.720 %
+  QCPINN vs ctrl_none   : Welch p = 0.372
+  QCPINN vs ctrl_cos    : Welch p = 0.144
+  QCPINN vs ctrl_tanh   : Welch p = 0.005
+  QCPINN vs ctrl_linear : Welch p = 0.190
+  Lectura: si un control iguala al QCPINN (p alto), el circuito no
+  aporta nada que una capa clasica de 5 dim no haga.
+
+==================================================================
+PUNTO 3 - PESO DEL RESIDUO (interior vs frontera)
+==================================================================
+  grupo       L2 global  L2 interior  L2 frontera
+  wres0.1         4.463        4.506        2.162   (n=10)
+  wres1          13.271       13.399        6.212   (n=10)
+  wres10        228.114      230.286      112.806   (n=10)
+  wres100       697.487      700.158      582.628   (n=10)
+  Lectura: si al subir w_res el interior baja y la frontera sube, la
+  asimetria era de la ponderacion, no de la imposicion blanda.
+
+==================================================================
+PUNTO 4 - L-BFGS TRAS ADAM (mismo protocolo en ambas arquitecturas)
+==================================================================
+  grupo                            Adam    Adam+L-BFGS  n
+  Control de iteraciones (PINN clasica, solo Adam):
+    Adam 20k epocas     :  4.463% +-1.558  (n=10)
+    Adam 50000 epocas   :  1.818% +-0.392  (n=10)
+    -> aun con muchas mas epocas, Adam se queda lejos del error de
+       L-BFGS (abajo). La mejora es de ser 2do orden, no de mas pasos.
+       (la trayectoria L2 por epoca esta en l2_trajectory.csv de cada
+        corrida; usa analizar_perdida.py --l2traj para la curva media.)
+
+  clasico nres=2000       4.463+-1.558   0.736+-0.378  (n=10)
+  clasico nres=800        4.463+-1.558   1.133+-0.653  (n=10)
+  hibrido nres=800        5.576+-2.720   1.453+-1.845  (n=10)
+  referencia solo-Adam: clasico 4.463 %, hibrido 5.576 %  (cap. 5)
+  hibrido vs clasico tras L-BFGS (nres=800): Welch p = 0.615
+  Lectura: si ambas bajan ~6x, el techo de ~4,5 % era de Adam (no de la
+  formulacion PINN). Eso reescribe la conclusion general del capitulo 7.
+
+==================================================================
+PUNTO 6 - INTERVALO DE CONFIANZA  (QCPINN - PINN, SIN masa)
+==================================================================
+  QCPINN = 5.576 %   PINN = 4.463 %
+  diferencia = +1.113 pp   IC 95% = [-1.008, +3.234] pp   (p=0.280)
+  El IC incluye 0: no hay diferencia detectable, pero el intervalo se
+  extiende varios pp -> los datos son compatibles con que el hibrido
+  sea algo mejor O varios pp peor. NO afirmar 'equivalente'; describir
+  el IC, que es ancho por el n y la dispersion.
+
+==================================================================
+PUNTO 8 - TERMINO DE MASA  (sin masa vs beta=1)
+==================================================================
+  modelo                     sin masa (n)         beta=1 (n)          delta
+  PINN Model-2          4.463+-1.558 (10)  4.394+-1.598 (10)    -0.07+-0.71
+  hibrido (circuito)    5.576+-2.720 (10)  7.377+-3.183 (10)    +1.80+-1.32
+  ctrl_cos (0 qubits)   4.096+-1.292 (10)  5.312+-2.442 (10)    +1.22+-0.87
+  ctrl_none (lineal)    4.644+-1.693 (10)  8.699+-7.996 (10)    +4.06+-2.58
+  FD  masa                             --           0.0051   (ref.)
+  FEM masa                             --           0.0051   (ref.)
+  Lectura: si el hibrido con masa (7,4%) y ctrl_cos con masa suben igual,
+  la perdida con masa es del cuello de botella / readout, no del circuito.
+  Si ctrl_cos se queda en ~4%, es algo especifico del circuito con masa.
+
+==================================================================
+ENERGIA - CASO SIN FUENTE (f=0), conservacion en los 4 metodos
+==================================================================
+  metodo                    deriva relativa de E(t)
+  Diferencias finitas                     2.284e-06
+  Elementos finitos P1                    4.457e-06
+  PINN clasica (Adam)               7.078e-03 +-3.6e-03  (n=3)
+  QCPINN hibrida (Adam)             3.951e-03 +-2.1e-03  (n=3)
+  Lectura: los metodos numericos conservan la energia a ~1e-5; las redes
+  la derivan ordenes de magnitud mas. Es una debilidad fisica de las PINN
+  que el esquema numerico no tiene, y refuerza la discusion fisica.
+
+  Efecto de L-BFGS sobre la conservacion de energia (misma corrida):
+  red                         deriva Adam          deriva L-BFGS    n
+  PINN clasica       7.595e-03+-3.2e-03   5.626e-03+-2.2e-03   10
+  QCPINN hibrida     3.902e-03+-1.5e-03   1.187e-03+-7.1e-04    5
+  Si la deriva baja con L-BFGS, la mala conservacion era de la
+  optimizacion (Adam), no de la formulacion PINN; si no baja, la
+  debilidad es estructural de la red y no la arregla el optimizador.
+
+Archivos guardados en analysis_revision/ :
+  revision_report.txt      este reporte completo
+  revision_resumen.csv     media+-sd por grupo
+  revision_por_semilla.csv TODOS los valores crudos, una fila por semilla
+  revision_lbfgs.csv       L2 antes/despues de L-BFGS por semilla

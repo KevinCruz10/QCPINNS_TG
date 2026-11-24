@@ -1,0 +1,30 @@
+{
+  "tag": "kg_dv_angle_layered_seed7",
+  "run_dir": "./results/kg_dv_angle_layered_seed7/2026-09-02_01-06-34-863252",
+  "solver": "DV",
+  "ansatz": "layered",
+  "encoding": "angle",
+  "seed": 7,
+  "epochs": 20000,
+  "batch": 128,
+  "lr": 0.005,
+  "weights": {
+    "res": 0.1,
+    "ut": 0.1,
+    "bc": 10.0,
+    "ics": 10.0
+  },
+  "n_params": 776,
+  "total_time_s": 4741.459414958954,
+  "mean_iter_time_s": 0.23705445640596107,
+  "median_iter_time_s": 0.235718681004073,
+  "peak_rss_mb": 524.03125,
+  "loss_final": 0.4109751880168915,
+  "L2_u_global_pct": 17.555634677410126,
+  "L2_f_global_pct": 1.80578101426363,
+  "L2_u_t0_pct": 5.445510521531105,
+  "L2_u_x0_pct": 22.181256115436554,
+  "L2_u_x1_pct": 6.653775274753571,
+  "L2_u_boundary_pct": 6.472326070070267,
+  "L2_u_interior_pct": 17.756018042564392
+}

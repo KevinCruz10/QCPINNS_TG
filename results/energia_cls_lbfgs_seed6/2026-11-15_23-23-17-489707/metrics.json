@@ -1,0 +1,14 @@
+{
+  "caso": "sin fuente (f=0), red",
+  "solver": "Classical",
+  "beta": 1.0,
+  "seed": 6,
+  "n_params": 2751,
+  "total_time_s": 69.17362093925476,
+  "E0": 2.8178902712414633,
+  "E_final": 2.834470665827926,
+  "drift_rel": 0.00588397453076061,
+  "loss_final": 0.0002628593356348574,
+  "lbfgs_iters": 800,
+  "drift_rel_adam": 0.009764368835074255
+}

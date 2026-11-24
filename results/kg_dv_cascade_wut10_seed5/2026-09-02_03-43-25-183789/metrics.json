@@ -1,0 +1,30 @@
+{
+  "tag": "kg_dv_cascade_wut10_seed5",
+  "run_dir": "./results/kg_dv_cascade_wut10_seed5/2026-09-02_03-43-25-183789",
+  "solver": "DV",
+  "ansatz": "cascade",
+  "encoding": "angle",
+  "seed": 5,
+  "epochs": 20000,
+  "batch": 128,
+  "lr": 0.005,
+  "weights": {
+    "res": 0.1,
+    "ut": 10.0,
+    "bc": 10.0,
+    "ics": 10.0
+  },
+  "n_params": 771,
+  "total_time_s": 4503.924589633942,
+  "mean_iter_time_s": 0.22517837910214683,
+  "median_iter_time_s": 0.22374252499866998,
+  "peak_rss_mb": 480.87109375,
+  "loss_final": 0.22074808180332184,
+  "L2_u_global_pct": 7.856583595275879,
+  "L2_f_global_pct": 1.453533861786127,
+  "L2_u_t0_pct": 2.6190603151917458,
+  "L2_u_x0_pct": 22.58697599172592,
+  "L2_u_x1_pct": 4.075146466493607,
+  "L2_u_boundary_pct": 3.989383578300476,
+  "L2_u_interior_pct": 7.933669537305832
+}
